@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const BASE_URL = 'https://sci-hub.st'; // 定义基础 URL
+const BASE_URL = 'https://sci-hub.ru'; // 定义基础 URL
 
 /**
  * 获取详情页面中的实际 PDF 链接
@@ -79,7 +79,7 @@ async function fetchPaperStats() {
         console.log(papers);
         return papers;
     } catch (error) {
-        console.error('抓取数据时出错:', error.message);
+        console.error('抓取'+BASE_URL+'数据时出错:', error.message);
     }
 }
 
