@@ -1,6 +1,8 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+const BASE_URL = 'https://sci-hub.st'; // 定义基础 URL
+
 /**
  * 获取详情页面中的实际 PDF 链接
  * @param {string} detailUrl - 详情页面的 URL
@@ -24,7 +26,7 @@ async function getPdfUrl(detailUrl) {
         } else if (embedSrc.startsWith('http')) {
             return embedSrc;
         } else {
-            return 'https://sci-hub.se' + embedSrc;
+            return BASE_URL + embedSrc; // 使用全局变量
         }
     } catch (error) {
         console.error(`无法获取详情页 ${detailUrl} 的 PDF 链接:`, error.message);
@@ -37,7 +39,7 @@ async function getPdfUrl(detailUrl) {
  */
 async function fetchPaperStats() {
     try {
-        const response = await axios.get('https://sci-hub.se/stats');
+        const response = await axios.get(`${BASE_URL}/stats`); // 使用全局变量
         const html = response.data;
         const $ = cheerio.load(html);
         const papers = [];
@@ -50,7 +52,7 @@ async function fetchPaperStats() {
             const journal = $(element).find('.journal').text().trim();
             const author = $(element).find('.author').text().trim();
             const year = $(element).find('.year').text().trim();
-            const pdfLink = `https://sci-hub.se${href}`; // 构建完整的详情页面 URL
+            const pdfLink = `${BASE_URL}${href}`; // 使用全局变量构建完整的详情页面 URL
 
             papers.push({
                 doi,
@@ -81,5 +83,4 @@ async function fetchPaperStats() {
     }
 }
 
-module.exports = { fetchPaperStats }; 
 module.exports = { fetchPaperStats }; 
