@@ -7,7 +7,7 @@
    app.use(express.json());
 
    app.get('/', (req, res) => {
-       res.send('欢迎来到我的 RESTful API!');
+       res.send('sci16z API');
    });
 
    app.get('/api/papers', async (req, res) => {
