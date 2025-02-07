@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const BASE_URL = 'https://sci-hub.se'; // 定义基础 URL
+const BASE_URL = 'https://sci-hub.ru'; // 定义基础 URL
 
 /**
  * 获取详情页面中的实际 PDF 链接
